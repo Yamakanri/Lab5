@@ -11,6 +11,11 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+/**
+ * Class for working with user.
+ * Contains tools for checking and validating input values from user and adding new objects to collection
+ */
+
 public class UserManager {
     private static final HashMap<String, Command> descriptionMap = CommandManager.getDescriptionMap();
     private static final Scanner scanner = new Scanner(System.in);
@@ -34,7 +39,9 @@ public class UserManager {
     }
 
 
-
+    /**
+     * Method for requesting user for command
+     */
     public static void requestInputCommand() {
         try {
             System.out.print("\nВведите команду: ");
@@ -48,6 +55,10 @@ public class UserManager {
         }
     }
 
+    /**
+     * Method for working with script from user file
+     * @param list
+     */
     public static void requestCommandForScript(List<String> list) {
         try {
             for (String command : list) {
@@ -60,6 +71,10 @@ public class UserManager {
             System.err.println("\nСкрипт вызывает сам себя! Выход из скрипта");
         }
     }
+
+    /**
+     * Method for validating input command and arguments
+     */
     public static void checkAndStartCommand(String line) {
         String argument;
         String command;
@@ -83,6 +98,13 @@ public class UserManager {
         }
     }
 
+
+    /**
+     * Main method in class, contains request from user to fill the collection.
+     * Validates all the fields which return as a final value to collection
+     * @param studyGroup
+     * @return
+     */
     public static StudyGroup userDataCollect(StudyGroup studyGroup) {
         var userInput = "";
 

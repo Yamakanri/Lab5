@@ -1,9 +1,9 @@
 package command;
 
 import manager.StudyGroupCollection;
-import utility.IdSort;
 import utility.Printer;
 
+import java.util.Collections;
 
 
 /**
@@ -17,32 +17,29 @@ public class ReorderCommand extends Command {
         super(description, hasArgs);
     }
 
+    @Override
     public void execute(Printer printer) {
-        if (checkArgument(new Printer(), getArgs())) {
-
-
+        if (checkArgument(printer, getArgs())) {
             if (StudyGroupCollection.getStudyGroupLinkedList().isEmpty()) {
                 printer.print("Коллекция пуста! Сортировать нечего");
-
             } else {
-                StudyGroupCollection.getStudyGroupLinkedList().sort(new IdSort());
-                printer.print("Коллекция успешно отсортирована!");
+                Collections.reverse(StudyGroupCollection.getStudyGroupLinkedList());
+                printer.print("Коллекция успешно отсортирована в обратном порядке!");
             }
-
         }
     }
 
-
-        public boolean checkArgument (Printer printer, Object inputArgs){
-            if (inputArgs == null) {
-                return true;
-            } else {
-                printer.print("У команды add нет аргументов! Введите команду без аргументов!");
-                return false;
-            }
+    @Override
+    public boolean checkArgument(Printer printer, Object inputArgs) {
+        if (inputArgs == null) {
+            return true;
+        } else {
+            printer.print("У команды reorder нет аргументов! Введите команду без аргументов!");
+            return false;
         }
-
-
-
     }
+}
+
+
+
 

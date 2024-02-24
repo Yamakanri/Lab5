@@ -21,7 +21,7 @@ public class RemoveFirstCommand extends Command {
             printer.print("Коллекция пуста!");
         } else {
             if (checkArgument(new Printer(), getArgs())) {
-                StudyGroupCollection.getStudyGroupLinkedList().remove(1);
+                StudyGroupCollection.getStudyGroupLinkedList().remove(0);
                 printer.print("Первый элемент коллекции успешно удален!");
 
             }

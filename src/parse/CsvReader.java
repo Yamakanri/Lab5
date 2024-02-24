@@ -48,7 +48,7 @@ public class CsvReader implements BaseReader {
                 studyGroup.setFormOfEducation(FormOfEducation.valueOf(line[6]));
                 studyGroup.setSemester(Enum.valueOf(Semester.class, line[7]));
 
-
+                // Создаем объект Person и устанавливаем его значения
                 Person groupAdmin = new Person();
                 groupAdmin.setName(line[8]);
                 groupAdmin.setHeight(Integer.parseInt(line[9]));

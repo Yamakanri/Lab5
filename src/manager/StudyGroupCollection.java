@@ -57,6 +57,8 @@ public class StudyGroupCollection {
         studyGroupLinkedList.add(studyGroup);
     }
 
+
+
     /**
      * Getters for collection
      * @return

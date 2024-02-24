@@ -27,7 +27,7 @@ public class CommandManager {
         descriptionMap.put("reorder", new ReorderCommand("Команда сортирует коллекцию в обратном порядке", false));
         descriptionMap.put("print_ascending", new PrintAscCommand("Команда выводит все элементы коллекции в порядке возрастания", false));
         descriptionMap.put("filter_by_group_admin", new FilterByGroupAdminCommand("Команда выводит элементы, у которых значение поля groupAdmin – равно заданному", true));
-        descriptionMap.put("filter_less_than_semester_enum", new FilterLessThanSemEnumCommand("Команда выводит элементы, у которых значение поля semesterEnum – меньше заданного", true));
+        descriptionMap.put("filter_less_than_semester", new FilterLessThanSemEnumCommand("Команда выводит элементы, у которых значение поля semesterEnum – меньше заданного", true));
 
         descriptionMap.put("execute_script", new ExecuteScriptCommand("Команда выполняет скрипт записанный в файле. Принимате путь файла как аргумент", true));
     }
