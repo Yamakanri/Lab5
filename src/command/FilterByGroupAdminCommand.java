@@ -37,7 +37,7 @@ public class FilterByGroupAdminCommand extends Command {
     @Override
     public boolean checkArgument(Printer printer, Object inputArgs) {
         if (inputArgs == null) {
-            printer.print("У команды filter_starts_with_name должен быть аргумент!");
+            printer.print("У команды filter_by_group_admin должен быть аргумент!");
             return false;
         } else {
             return true;

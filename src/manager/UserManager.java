@@ -150,7 +150,7 @@ public class UserManager {
                     System.out.println("Координата должна быть больше  -1000000!");
                 }
             } catch (NumberFormatException ex) {
-                System.out.println("Невалидные данные! Попробуйте ввести еще раз");
+                System.out.println("Данные некорректны! Попробуйте ввести еще раз!");
             }
         } while (!XCoordinateValidator.validate(x));
 
@@ -165,14 +165,14 @@ public class UserManager {
                 if (!EmptyChecker.checking(userInput)) {
                     y = Long.parseLong(userInput);
                 }
-                if (Float.parseFloat(userInput) > 1000000) {
+                if (Float.parseFloat(userInput) >= 1000000) {
                     System.out.println("Координата должна быть меньше 1000000!");
                 }
-                if (Float.parseFloat(userInput) < -1000000) {
+                if (Float.parseFloat(userInput) <= -1000000) {
                     System.out.println("Координата должна быть больше -1000000!");
                 }
             } catch (NumberFormatException ex) {
-                System.out.println("Невалидные данные! Попробуйте ввести еще раз");
+                System.out.println("Данные некорректны! Попробуйте ввести еще раз!");
             }
         } while (!YCoordinateValidator.validate(y));
         studyGroup.setCoordinates(new Coordinates(x, y));
@@ -198,7 +198,7 @@ public class UserManager {
                     System.out.println("Введите число (int) > 0");
                 }
             } catch (NumberFormatException ex) {
-                System.out.println("Невалидные данные! Попробуйте ввести еще раз");
+                System.out.println("Данные некорректны! Попробуйте ввести еще раз!");
             }
         } while (!StudentsCountValidator.validate(studentsCount));
         studyGroup.setStudentsCount(studentsCount);
@@ -227,7 +227,7 @@ public class UserManager {
             } catch (NumberFormatException ex) {
                 System.out.println("Введите номер (число), чтобы выбрать тип обучения!");
             } catch (IllegalArgumentException ex) {
-                System.out.println("Невалидные данные! Попробуйте еще раз");
+                System.out.println("Данные некорректны! Попробуйте ввести еще раз!");
             }
         } while (!FormOfEducationValidator.validate(formOfEducation));
         studyGroup.setFormOfEducation(formOfEducation);
@@ -255,7 +255,7 @@ public class UserManager {
             } catch (NumberFormatException ex) {
                 System.out.println("Введите номер (число), чтобы выбрать семестр!");
             } catch (IllegalArgumentException ex) {
-                System.out.println("Невалидные данные! Попробуйте еще раз");
+                System.out.println("Данные некорректны! Попробуйте ввести еще раз!");
             }
         } while (!SemesterValidator.validate(semester));
         studyGroup.setSemester(semester);
@@ -269,16 +269,22 @@ public class UserManager {
         Person student = new Person();
 
         String admin = "";
-
+        do {
             System.out.print("\nВведите имя старосты: ");
             userInput = scanner.nextLine().strip();
+            if (!EmptyChecker.checking(userInput)) {
                 admin = userInput;
+            }
+        }
+            while (!NameValidator.validate(admin));
                 student.setName(admin);
-                if (student.getName() != null){
+
 
         /**
          * Method for user input field Height in Person
          */
+
+
         int height = 0;
         do {
             try {
@@ -300,22 +306,27 @@ public class UserManager {
         /**
          * Method for user input field Weight in Person
          */
-        double weight = 0;
+        Double weight = null;
         do {
             try {
                 System.out.print("\nВведите вес старосты: ");
                 userInput = scanner.nextLine().strip();
-                if (!EmptyChecker.checking(userInput.replace(",", ",").trim().strip())) {
-                    weight = Double.parseDouble(userInput);
+                if (userInput.isEmpty()) {
+                    weight = null;
+                    break; // Прерываем цикл, так как пользователь ввел пустую строку
                 }
-                if (Double.parseDouble(userInput) <= 0) {
+                weight = Double.parseDouble(userInput);
+                if (weight <= 0) {
                     System.out.println("Введите число (Double) > 0");
+                    continue;
                 }
             } catch (NumberFormatException ex) {
                 System.out.println("Невалидные данные! Попробуйте ввести еще раз");
+                continue;
             }
         } while (!WeightValidator.validate(weight));
         student.setWeight(weight);
+
 
 
         /**
@@ -338,7 +349,7 @@ public class UserManager {
                 }
 
             } catch (NumberFormatException ex) {
-                System.out.println("Невалидные данные! Попробуйте ввести еще раз");
+                System.out.println("Данные некорректны! Попробуйте ввести еще раз!");
             }
         } while (!PassportIDValidator.validate(passportID));
         uniqueIDs.add(passportID);
@@ -359,27 +370,21 @@ public class UserManager {
             }
             try {
                 userInput = scanner.nextLine().strip();
-                Integer.parseInt(userInput);
-                if (!EmptyChecker.checking(userInput)) {
-                    if (Country.valueOfCountry(userInput) == null) {
-                        System.out.println("Такого номера в списке нет! Попробуйте еще раз");
-                    } else {
-                        country = Country.valueOfCountry(userInput);
-                    }
+                if (userInput.isEmpty()) {
+                    country = null;
+                    break; // Прерываем цикл, так как пользователь ввел пустую строку
                 }
-            } catch (NumberFormatException ex) {
-                System.out.println("Введите номер (число), чтобы выбрать семестр!");
+                if (Country.valueOfCountry(userInput) == null) {
+                    System.out.println("Такого номера в списке нет! Попробуйте еще раз");
+                    continue;
+                }
+                country = Country.valueOfCountry(userInput);
             } catch (IllegalArgumentException ex) {
                 System.out.println("Невалидные данные! Попробуйте еще раз");
             }
         } while (!SemesterValidator.validate(country));
         student.setNationality(country);
-                }else {
-                    student.setHeight(0);
-                    student.setWeight(0d);
-                    student.setPassportID(null);
-                    student.setNationality(Country.valueOfCountry("1"));
-                }
+
 
         studyGroup.setGroupAdmin(student);
 

@@ -22,6 +22,7 @@ public class FilterLessThanSemEnumCommand extends Command {
                 if (StudyGroupCollection.getStudyGroupLinkedList().isEmpty()) {
                     printer.print("Коллекция пуста!");
                 } else {
+
                     int argumentSemester = Integer.parseInt(getArgs().toString()) - 1;
 
                     for (StudyGroup studyGroup : StudyGroupCollection.getStudyGroupLinkedList()) {
@@ -42,8 +43,8 @@ public class FilterLessThanSemEnumCommand extends Command {
 
     @Override
     public boolean checkArgument(Printer printer, Object inputArgs) {
-        if (inputArgs == null) {
-            printer.print("У команды filter_less_than_sem должен быть аргумент!");
+        if (inputArgs == null || Integer.parseInt((String) inputArgs)>3 || Integer.parseInt((String) inputArgs)<0) {
+            printer.print("У команды filter_less_than_sem должен быть положительный аргумент меньше 3!");
             return false;
         } else {
             return true;

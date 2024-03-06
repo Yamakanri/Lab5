@@ -33,7 +33,7 @@ public class RemoveFirstCommand extends Command {
         if (inputArgs == null) {
             return true;
         } else {
-            printer.print("У команды add нет аргументов! Введите команду без аргументов!");
+            printer.print("У команды remove_first нет аргументов! Введите команду без аргументов!");
             return false;
         }
     }

@@ -52,9 +52,22 @@ public class CsvReader implements BaseReader {
                 Person groupAdmin = new Person();
                 groupAdmin.setName(line[8]);
                 groupAdmin.setHeight(Integer.parseInt(line[9]));
-                groupAdmin.setWeight(Double.parseDouble(line[10]));
+                if (!line[10].equals("null")) {
+                    groupAdmin.setWeight(Double.parseDouble(line[10]));
+                } else {
+                    groupAdmin.setWeight(null);
+                }
                 groupAdmin.setPassportID(line[11]);
-                groupAdmin.setNationality(Country.valueOf(line[12]));
+                if (!line[12].equals("null")) {
+                    try {
+                        groupAdmin.setNationality(Country.valueOf(line[12]));
+                    } catch (IllegalArgumentException e) {
+                        // Если такой константы нет, присваиваем null
+                        groupAdmin.setNationality(null);
+                    }
+                } else {
+                    groupAdmin.setNationality(null);
+                }
 
 
                 studyGroup.setGroupAdmin(groupAdmin);

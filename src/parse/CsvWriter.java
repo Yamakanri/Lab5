@@ -49,7 +49,7 @@ public class CsvWriter implements BaseWriter {
             };
             writer.writeNext(headers);
             for (StudyGroup studyGroup : studyGroups) {
-
+                String nationalityString = studyGroup.getGroupAdmin().getNationality() != null ? studyGroup.getGroupAdmin().getNationality().toString() : "";
                 String[] record = {
                         String.valueOf(studyGroup.getId()),
                         studyGroup.getName(),
@@ -63,7 +63,7 @@ public class CsvWriter implements BaseWriter {
                         String.valueOf(studyGroup.getGroupAdmin().getHeight()),
                         String.valueOf(studyGroup.getGroupAdmin().getWeight()),
                         studyGroup.getGroupAdmin().getPassportID(),
-                        studyGroup.getGroupAdmin().getNationality().toString()
+                        nationalityString
                 };
                 writer.writeNext(record);
             }

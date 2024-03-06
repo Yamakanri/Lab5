@@ -35,7 +35,7 @@ public class PrintAscCommand extends Command {
         if (inputArgs == null) {
             return true;
         } else {
-            printer.print("У команды sort не должно быть аргументов!");
+            printer.print("У команды print_ascending не должно быть аргументов!");
             return false;
         }
     }
