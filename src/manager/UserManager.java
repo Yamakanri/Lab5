@@ -269,16 +269,12 @@ public class UserManager {
         Person student = new Person();
 
         String admin = "";
-        do {
+
             System.out.print("\nВведите имя старосты: ");
             userInput = scanner.nextLine().strip();
-            if (!EmptyChecker.checking(userInput)) {
                 admin = userInput;
-            } else {
-                System.out.println("Невалидные данные! Попробуйте еще раз");
-            }
-        } while (!NameValidator.validate(admin));
-        student.setName(admin);
+                student.setName(admin);
+                if (student.getName() != null){
 
         /**
          * Method for user input field Height in Person
@@ -378,6 +374,12 @@ public class UserManager {
             }
         } while (!SemesterValidator.validate(country));
         student.setNationality(country);
+                }else {
+                    student.setHeight(0);
+                    student.setWeight(0d);
+                    student.setPassportID(null);
+                    student.setNationality(Country.valueOfCountry("1"));
+                }
 
         studyGroup.setGroupAdmin(student);
 

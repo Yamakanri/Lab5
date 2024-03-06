@@ -26,7 +26,7 @@ public class FilterLessThanSemEnumCommand extends Command {
 
                     for (StudyGroup studyGroup : StudyGroupCollection.getStudyGroupLinkedList()) {
                         if (argumentSemester > (studyGroup.getSemester().ordinal())) {
-                            printer.print("Группа с названием: " + studyGroup.getName());
+                            printer.print("Группа: " + studyGroup.getName());
 
                         }
 
